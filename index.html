@@ -299,9 +299,14 @@
                 <span id="el-mx5iegry">Référencement SEO avancé</span>
               </li>
             </ul>
-            <a href="#quote" class="mt-8 block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300" id="el-vxunpg60">
-              Commencer
-            </a>
+           <a href="#quote" class="commencer-btn mt-8 block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300" 
+   data-id="1" 
+   data-nom="Portfolio Professionnel" 
+   data-prix="299" 
+   data-image="https://placehold.co/120x80" 
+   data-description="Design responsive, 5 pages">
+    Commencer
+</a>
           </div>
         </div>
         
@@ -358,9 +363,14 @@
                 <span class="text-neutral-700 dark:text-neutral-200" id="el-0jwitovc">Animation et interactions</span>
               </li>
             </ul>
-            <a href="#quote" class="mt-8 block w-full text-center bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 shadow-md" id="el-blubhhzo">
-              Commencer
-            </a>
+           <a href="#quote" class="commencer-btn mt-8 block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300" 
+   data-id="2" 
+   data-nom="Site Vitrine Professionnel" 
+   data-prix="299" 
+   data-image="https://placehold.co/120x80" 
+   data-description="Design responsive, 5 pages">
+    Commencer
+</a>
           </div>
         </div>
         
@@ -414,12 +424,53 @@
                 <span class="text-neutral-700 dark:text-neutral-200" id="el-l1lrr4l6">Support technique prioritaire (1 an)</span>
               </li>
             </ul>
-            <a href="#quote" class="mt-8 block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300" id="el-3825n1v2">
-              Commencer
-            </a>
+           <a href="#quote" class="commencer-btn mt-8 block w-full text-center bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-300" 
+   data-id="3" 
+   data-nom="Ecommerce" 
+   data-prix="299" 
+   data-image="https://placehold.co/120x80" 
+   data-description="Design responsive, 5 pages">
+    Commencer
+</a>
           </div>
         </div>
       </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let boutonsCommencer = document.querySelectorAll(".commencer-btn");
+
+    boutonsCommencer.forEach(bouton => {
+        bouton.addEventListener("click", function (event) {
+            event.preventDefault(); // Empêche la navigation immédiate
+
+            let id = bouton.getAttribute("data-id");
+            let nom = bouton.getAttribute("data-nom");
+            let prix = parseFloat(bouton.getAttribute("data-prix"));
+            let image = bouton.getAttribute("data-image");
+            let description = bouton.getAttribute("data-description");
+
+            ajouterAuPanier(id, nom, prix, image, description);
+
+            // Redirige automatiquement vers la page panier après l'ajout
+            window.location.href = "https://portfolio-professionnal.github.io/Panier/panier.html";
+        });
+    });
+});
+
+function ajouterAuPanier(id, nom, prix, image, description) {
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+    let produitExiste = panier.find(p => p.id == id);
+    if (produitExiste) {
+        produitExiste.quantite += 1;
+    } else {
+        let produit = { id, nom, prix, image, description, quantite: 1 };
+        panier.push(produit);
+    }
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+}
+</script>
       
       <!-- Hosting Plans -->
       <div class="mt-20 text-center mb-12 max-w-3xl mx-auto animate__animated animate__fadeIn" style="visibility: visible;" id="el-5ksm1azb">
